@@ -6,6 +6,7 @@ import com.bookin.bookmanagement.usermanagement.service.UserHelperService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +28,7 @@ public class OrderController {
 
 
     @GetMapping("/get")
-   // @PreAuthorize("hasAuthority('ROLE_USER')")
+   @PreAuthorize("hasAuthority('ROLE_USER')")
     public ResponseEntity<Object> getAllOrder(){
         log.trace("getAllOrder collaboration get all method invoked OrderController !");
         try {
@@ -46,7 +47,7 @@ public class OrderController {
 
 
     @PostMapping("/submit")
-   // @PreAuthorize("hasAuthority('ROLE_USER')")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     public ResponseEntity<Object> saveOrder(){
         log.trace("collaboration OrderController details application save method invoked !");
         try {
@@ -66,6 +67,7 @@ public class OrderController {
     }
 
     @GetMapping("/getOders")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Object> getOrders(){
         log.trace("getOrders collaboration get all method invoked OrderController !");
         try {
