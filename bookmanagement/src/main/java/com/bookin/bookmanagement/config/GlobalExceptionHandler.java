@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<Object> messageNotReadable(HttpMessageNotReadableException ex) {
-        return APIResponseUtil.getResponseWithErrorMessage(ex.toString());
+        return APIResponseUtil.getResponseWithErrorMessage(ex.getMessage());
     }
 
     /**
@@ -39,7 +39,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<Object> methodArgumentTypeMismatch(MethodArgumentTypeMismatchException ex) {
-        return APIResponseUtil.getResponseWithErrorMessage(ex.toString());
+        return APIResponseUtil.getResponseWithErrorMessage(ex.getMessage());
     }
 
 
@@ -52,7 +52,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<Object> noSuchElement(NoSuchElementException ex) {
-       return APIResponseUtil.getResponseWithErrorMessage(ex.toString());
+       return APIResponseUtil.getResponseWithErrorMessage(ex.getMessage());
     }
 
     /**
@@ -64,7 +64,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Object> handleInvalidArgument(MethodArgumentNotValidException ex) {
-        return APIResponseUtil.getResponseWithErrorMessage(ex.toString());
+        return APIResponseUtil.getResponseWithErrorMessage(ex.getTitleMessageCode());
     }
 
     /**
@@ -76,7 +76,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ExpiredJwtException.class)
     public ResponseEntity<Object> expiredJwt(ExpiredJwtException ex) {
-        return APIResponseUtil.getResponseWithErrorMessage(ex.toString());
+        return APIResponseUtil.getResponseWithErrorMessage(ex.getLocalizedMessage());
     }
 
     /**
@@ -88,7 +88,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(UsernameNotFoundException.class)
     public ResponseEntity<Object> userNotFound(UsernameNotFoundException ex) {
-        return APIResponseUtil.getResponseWithErrorMessage(ex.toString());
+        return APIResponseUtil.getResponseWithErrorMessage(ex.getLocalizedMessage());
     }
 
 }

@@ -12,11 +12,7 @@ package com.bookin.bookmanagement.response;
 
 import java.io.Serializable;
 
-/**
- * @author RA SUNDER RAJ on 05/12/21
- * @project lava-commons
- * @descrpition Rest Api Related Constants are defined here
- */
+
 public class APIOutput<T> implements Serializable {
     private Boolean status;
     private T data;

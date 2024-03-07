@@ -2,6 +2,7 @@ package com.bookin.bookmanagement.book;
 
 import com.bookin.bookmanagement.constant.ResponseMessage;
 import com.bookin.bookmanagement.response.APIResponseUtil;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +41,7 @@ public class BookController {
 
     @PostMapping("/save")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public ResponseEntity<Object> saveBooks(@RequestBody BookDto bookDto) {
+    public ResponseEntity<Object> saveBooks(@Valid @RequestBody BookDto bookDto) {
         log.trace("collaboration BookController details application save method invoked !");
         try {
             BookDto savedBaunint = bookService.saveBooks(bookDto);
@@ -77,7 +78,7 @@ public class BookController {
 
     @PostMapping("/update/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public ResponseEntity<Object> updateBook(@PathVariable UUID id, @RequestBody BookDto bookDto) {
+    public ResponseEntity<Object> updateBook(@PathVariable UUID id,@Valid @RequestBody BookDto bookDto) {
 
         log.trace("update collaboration BookController details by application UUID method invoked !");
         try {

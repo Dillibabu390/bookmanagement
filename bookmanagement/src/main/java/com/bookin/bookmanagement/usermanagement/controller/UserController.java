@@ -1,4 +1,5 @@
 package com.bookin.bookmanagement.usermanagement.controller;
+
 import com.bookin.bookmanagement.constant.ResponseMessage;
 import com.bookin.bookmanagement.response.APIResponseUtil;
 import com.bookin.bookmanagement.usermanagement.dto.AuthRequest;
@@ -6,6 +7,7 @@ import com.bookin.bookmanagement.usermanagement.dto.AuthResponse;
 import com.bookin.bookmanagement.usermanagement.dto.UserDto;
 import com.bookin.bookmanagement.usermanagement.service.JwtService;
 import com.bookin.bookmanagement.usermanagement.service.UserInfoService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +15,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * The type User controller.
@@ -42,7 +46,7 @@ public class UserController {
      * @return the response entity
      */
     @PostMapping("/register")
-    public ResponseEntity<Object> addNewUser(@Validated @RequestBody UserDto userDto) {
+    public ResponseEntity<Object> addNewUser(@Valid @RequestBody UserDto userDto) {
 
         log.trace("UserController application addNewUser method invoked !");
         try {
@@ -64,7 +68,7 @@ public class UserController {
      * @return the object
      */
     @PostMapping("/login")
-    public Object authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
+    public Object authenticateAndGetToken(@Valid @RequestBody AuthRequest authRequest) {
         log.trace("UserController application authenticateAndGetToken method invoked !");
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
         if (authentication.isAuthenticated()) {
