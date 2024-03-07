@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.UUID;
 
 
+/**
+ * The type Book controller.
+ */
 @RestController
 @RequestMapping("/book")
 @RequiredArgsConstructor
@@ -22,6 +25,11 @@ public class BookController {
     private final BookService bookService;
 
 
+    /**
+     * Gets books.
+     *
+     * @return the books
+     */
     @GetMapping("/get")
     @PreAuthorize("hasAuthority('ROLE_USER')")
     public ResponseEntity<Object> getBooks() {
@@ -39,6 +47,12 @@ public class BookController {
     }
 
 
+    /**
+     * Save books response entity.
+     *
+     * @param bookDto the book dto
+     * @return the response entity
+     */
     @PostMapping("/save")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Object> saveBooks(@Valid @RequestBody BookDto bookDto) {
@@ -55,6 +69,12 @@ public class BookController {
         }
     }
 
+    /**
+     * Gets book by id.
+     *
+     * @param id the id
+     * @return the book by id
+     */
     @GetMapping("/get/{id}")
     @PreAuthorize("hasAuthority('ROLE_USER')")
     public ResponseEntity<Object> getBookById(@PathVariable UUID id) {
@@ -76,6 +96,13 @@ public class BookController {
         }
     }
 
+    /**
+     * Update book response entity.
+     *
+     * @param id      the id
+     * @param bookDto the book dto
+     * @return the response entity
+     */
     @PostMapping("/update/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Object> updateBook(@PathVariable UUID id,@Valid @RequestBody BookDto bookDto) {
@@ -98,6 +125,12 @@ public class BookController {
         }
     }
 
+    /**
+     * Delete book by id response entity.
+     *
+     * @param id the id
+     * @return the response entity
+     */
     @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Object> deleteBookById(@PathVariable UUID id) {

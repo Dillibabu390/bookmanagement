@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * The type Cart controller.
+ */
 @RestController
 @RequestMapping("/cart")
 @RequiredArgsConstructor
@@ -24,6 +27,11 @@ public class CartController {
     private final UserHelperService userHelperService;
 
 
+    /**
+     * Get all cart items response entity.
+     *
+     * @return the response entity
+     */
     @GetMapping("/get")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Object> getAllCartItems(){
@@ -41,6 +49,12 @@ public class CartController {
         }
     }
 
+    /**
+     * Save cart items response entity.
+     *
+     * @param cartDto the cart dto
+     * @return the response entity
+     */
     @PostMapping("/save")
     @PreAuthorize("hasAuthority('ROLE_USER')")
     public ResponseEntity<Object> saveCartItems(@RequestBody CartDto cartDto){
@@ -62,6 +76,12 @@ public class CartController {
 
     }
 
+    /**
+     * Save cart item by id response entity.
+     *
+     * @param id the id
+     * @return the response entity
+     */
     @PostMapping("/save/{id}")
     @PreAuthorize("hasAuthority('ROLE_USER')")
     public ResponseEntity<Object> saveCartItemById(@PathVariable UUID id){
@@ -83,7 +103,11 @@ public class CartController {
     }
 
 
-
+    /**
+     * Get based items response entity.
+     *
+     * @return the response entity
+     */
     @GetMapping("/getCart")
     @PreAuthorize("hasAuthority('ROLE_USER')")
     public ResponseEntity<Object> getBasedItems(){
@@ -106,7 +130,12 @@ public class CartController {
     }
 
 
-
+    /**
+     * Delete cart item by id response entity.
+     *
+     * @param id the id
+     * @return the response entity
+     */
     @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasAuthority('ROLE_USER')")
     public ResponseEntity<Object> deleteCartItemById(@PathVariable UUID id){

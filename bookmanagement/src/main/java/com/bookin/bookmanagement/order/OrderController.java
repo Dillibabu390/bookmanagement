@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 
+/**
+ * The type Order controller.
+ */
 @RestController
 @RequestMapping("/order")
 @RequiredArgsConstructor
@@ -27,6 +30,11 @@ public class OrderController {
     private final SendEmailService sendEmailService;
 
 
+    /**
+     * Get all order response entity.
+     *
+     * @return the response entity
+     */
     @GetMapping("/get")
    @PreAuthorize("hasAuthority('ROLE_USER')")
     public ResponseEntity<Object> getAllOrder(){
@@ -44,8 +52,11 @@ public class OrderController {
     }
 
 
-
-
+    /**
+     * Save order response entity.
+     *
+     * @return the response entity
+     */
     @PostMapping("/submit")
     @PreAuthorize("hasAuthority('ROLE_USER')")
     public ResponseEntity<Object> saveOrder(){
@@ -66,6 +77,11 @@ public class OrderController {
         }
     }
 
+    /**
+     * Get orders response entity.
+     *
+     * @return the response entity
+     */
     @GetMapping("/getOders")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Object> getOrders(){
